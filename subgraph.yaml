@@ -159,3 +159,24 @@ dataSources:
           handler: handleLiquidateBorrow
         - event: AccrueInterest(uint256,uint256,uint256)
           handler: handleAccrueInterest
+  - kind: ethereum/contract
+    name: GenericEventTrigger
+    network: rinkeby
+    source:
+      address: "0x54a298eE9fcCBF0aD8e55Bc641D3086b81a48c41"
+      abi: GenericEventTrigger
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.1
+      language: wasm/assemblyscript
+      file: ./src/mappings/genericEventTrigger.ts
+      entities:
+        - User
+        - Market
+        - CTokenInfo
+      abis:
+        - name: GenericEventTrigger
+          file: ./abis/genericEventTrigger.json
+      eventHandlers:
+        - event:  NewOrder(address,address,uint64,uint256,uint256,uint256,bool)
+          handler: handleGenericEventTrigger

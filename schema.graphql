@@ -43,11 +43,11 @@ type CTokenInfo @entity {
     cTokenBalance: BigDecimal!          # total ctokens the user owns of this asset
     underlyingSupplied: BigDecimal!     # Total amount the user has supplied of the underlying ERC20 or ETH
     underlyingRedeemed: BigDecimal!     # Total amount the user has redeemed of the underlying ERC20 or ETH
-    underlyingBalance: BigDecimal!      # Principal plus inflation earned: (cTokenBalance * exchangeRate)
-    interestEarned: BigDecimal!         # interestEarned = underlyingBalance - sum(underlyingSupplied) + sum(underlyingRedeemed) - NOTE - can be slightly negative or positive, due to precision loss in Compound sart contracts. This is okay.
+    underlyingBalance: BigDecimal!      # Principal plus inflation earned: (cTokenBalance * exchangeRate) # DYNAMIC
+    interestEarned: BigDecimal!         # interestEarned = underlyingBalance - sum(underlyingSupplied) + sum(underlyingRedeemed) - NOTE - can be slightly negative or positive, due to precision loss in Compound sart contracts. This is okay. # DYNAMIC
 
     totalBorrowed: BigDecimal!          # total borrow, exclusive of interest
     totalRepaid: BigDecimal!            # total repaid
-    borrowBalance: BigDecimal!          # total borrow, inclusive of interest, that must be repaid
-    borrowInterest: BigDecimal!         # borrowInterest = borrowBalance - totalBorrowed + totalRepaid
+    borrowBalance: BigDecimal!          # total borrow, inclusive of interest, that must be repaid # DYNAMIC
+    borrowInterest: BigDecimal!         # borrowInterest = borrowBalance - totalBorrowed + totalRepaid # DYNAMIC
 }
